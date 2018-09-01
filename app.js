@@ -1,16 +1,9 @@
 var score, activePlayer, roundScore;
-score = [0, 0];
-activePlayer = 0;
-roundScore = 0;
-
-document.querySelector("#score-0").textContent = "0";
-document.querySelector("#score-1").textContent = "0";
-document.querySelector("#current-0").textContent = "0";
-document.querySelector("#current-1").textContent = "0";
-
-document.querySelector("#dice-1").style.display = "none";
-
+init();
 // roll dice for active player
+
+document.querySelector('.btn-new').addEventListener('click',init);
+
 document.querySelector(".btn-roll").addEventListener('click', function(){
 	console.log("rolled")
 	var dice = Math.floor(Math.random()*6) + 1 //Genrate random number b/w 1 to 6
@@ -52,3 +45,31 @@ function nextPlayer(){
 		document.querySelector(".player-" + activePlayer +"-panel").classList.add('active');
 }
 
+
+function init() {
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+	
+    document.querySelector(".btn-hold").disabled = false;
+		document.querySelector(".btn-roll").disabled = false;
+	
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+	
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+	
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+	
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+	
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('active');
+	
+    document.querySelector('.player-0-panel').classList.add('active');
+}
